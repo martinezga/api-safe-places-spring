@@ -1,11 +1,9 @@
 package lat.safeplaces.api.controllers;
 
+import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/places")
@@ -13,6 +11,13 @@ public class PlaceServiceController {
     // Connect service
     @Autowired
     PlaceService placeService;
+
+    // Create a place
+    @PostMapping("/")
+    public String createPlace(@RequestBody PlaceModel place) {
+        placeService.createPlace(place);
+        return "Product is created successfully";
+    }
 
     // Get all places
     @GetMapping("/")
