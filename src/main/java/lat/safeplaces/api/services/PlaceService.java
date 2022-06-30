@@ -5,5 +5,5 @@ import lat.safeplaces.api.models.PlaceModel;
 public interface PlaceService {
     void createPlace(PlaceModel place);
     String getAllPlaces();
-    String getPlaceById(String id);
+    PlaceModel getPlaceById(String id);
 }

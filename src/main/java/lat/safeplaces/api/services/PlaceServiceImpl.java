@@ -25,7 +25,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public String getPlaceById(String id) {
-        return id;
+    public PlaceModel getPlaceById(String id) {
+        return placeRepo.get(id);
     }
 }

@@ -16,7 +16,7 @@ public class PlaceServiceController {
     @PostMapping("/")
     public String createPlace(@RequestBody PlaceModel place) {
         placeService.createPlace(place);
-        return "Product is created successfully";
+        return "Place is created successfully";
     }
 
     // Get all places
@@ -27,7 +27,7 @@ public class PlaceServiceController {
 
     // Get a place by ID
     @GetMapping("/{id}")
-    public String index(@PathVariable("id") String id) {
+    public PlaceModel index(@PathVariable("id") String id) {
         return placeService.getPlaceById(id);
     }
 }
