@@ -8,4 +8,9 @@ public class PlaceServiceImpl implements PlaceService {
     public String getAllPlaces() {
         return "Hello world from service";
     }
+
+    @Override
+    public String getPlaceById(String id) {
+        return id;
+    }
 }
