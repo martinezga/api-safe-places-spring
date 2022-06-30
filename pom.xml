@@ -38,4 +38,22 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.profiles.active>dev</maven.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <maven.profiles.active>prod</maven.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>
