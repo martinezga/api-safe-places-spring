@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class PlaceServiceImpl implements PlaceService {
     @Override
     public String getAllPlaces() {
-        return null;
+        return "Hello world from service";
     }
 }
