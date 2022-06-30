@@ -5,6 +5,8 @@ import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/places")
 public class PlaceServiceController {
@@ -21,7 +23,7 @@ public class PlaceServiceController {
 
     // Get all places
     @GetMapping("/")
-    public String index() {
+    public Collection<PlaceModel> index() {
         return placeService.getAllPlaces();
     }
 

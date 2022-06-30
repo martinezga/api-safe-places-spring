@@ -2,6 +2,8 @@ package lat.safeplaces.api.services;
 
 import lat.safeplaces.api.models.PlaceModel;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +22,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public String getAllPlaces() {
-        return "Hello world from service";
+    public Collection<PlaceModel> getAllPlaces() {
+        return placeRepo.values();
     }
 
     @Override
