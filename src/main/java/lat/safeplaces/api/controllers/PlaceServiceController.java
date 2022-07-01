@@ -10,6 +10,8 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/places")
 public class PlaceServiceController {
+    // TODO: implement status codes
+
     // Connect service
     @Autowired
     PlaceService placeService;
@@ -23,13 +25,22 @@ public class PlaceServiceController {
 
     // Get all places
     @GetMapping("/")
-    public Collection<PlaceModel> index() {
+    public Collection<PlaceModel> getAllPlaces() {
         return placeService.getAllPlaces();
     }
 
     // Get a place by ID
     @GetMapping("/{id}")
-    public PlaceModel index(@PathVariable("id") String id) {
+    public PlaceModel getPlace(@PathVariable("id") String id) {
         return placeService.getPlaceById(id);
     }
+
+    // Update place by ID
+    @PatchMapping("/{id}")
+    public String updatePlace(@PathVariable("id") String id, @RequestBody PlaceModel place) {
+        return placeService.updatePlaceById(id, place);
+    }
+
+    // Delete place by ID
+
 }

@@ -30,4 +30,18 @@ public class PlaceServiceImpl implements PlaceService {
     public PlaceModel getPlaceById(String id) {
         return placeRepo.get(id);
     }
+
+    @Override
+    public String updatePlaceById(String id, PlaceModel place) {
+        // Search if record exists
+        PlaceModel placeToUpdate = placeRepo.get(id);
+        try {
+            // If placeToUpdate is null throws an exception
+            place.setId(placeToUpdate.getId());
+            placeRepo.put(id, place);
+            return "Place is updated successfully";
+        } catch (Exception e) {
+            return "Error";
+        }
+    }
 }

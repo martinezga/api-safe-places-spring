@@ -8,4 +8,5 @@ public interface PlaceService {
     void createPlace(PlaceModel place);
     Collection<PlaceModel> getAllPlaces();
     PlaceModel getPlaceById(String id);
+    String updatePlaceById(String id, PlaceModel place);
 }
