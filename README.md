@@ -6,3 +6,4 @@
 - Spring boot service ->
   - https://www.tutorialspoint.com/spring_boot/spring_boot_service_components.htm
   - https://spring.io/guides/tutorials/rest/
+- H2 Database -> https://www.baeldung.com/spring-boot-h2-database
