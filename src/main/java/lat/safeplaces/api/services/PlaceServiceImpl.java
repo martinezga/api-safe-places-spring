@@ -28,6 +28,7 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public PlaceModel getPlaceById(String id) {
+        System.out.println(placeRepo);
         return placeRepo.get(id);
     }
 
@@ -40,6 +41,19 @@ public class PlaceServiceImpl implements PlaceService {
             place.setId(placeToUpdate.getId());
             placeRepo.put(id, place);
             return "Place is updated successfully";
+        } catch (Exception e) {
+            return "Error";
+        }
+    }
+
+    @Override
+    public String deletePlaceById(String id) {
+        // Search if record exists
+        PlaceModel placeToUpdate = placeRepo.get(id);
+        try {
+            // If placeToUpdate is null throws an exception
+            placeRepo.remove(id, placeToUpdate);
+            return "id: " + id + " deleted successfully";
         } catch (Exception e) {
             return "Error";
         }

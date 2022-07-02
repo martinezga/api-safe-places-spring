@@ -42,5 +42,9 @@ public class PlaceServiceController {
     }
 
     // Delete place by ID
+    @DeleteMapping("/{id}")
+    public String deletePlace(@PathVariable("id") String id) {
+        return placeService.deletePlaceById(id);
+    }
 
 }

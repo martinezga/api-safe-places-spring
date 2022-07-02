@@ -9,4 +9,5 @@ public interface PlaceService {
     Collection<PlaceModel> getAllPlaces();
     PlaceModel getPlaceById(String id);
     String updatePlaceById(String id, PlaceModel place);
+    String deletePlaceById(String id);
 }
