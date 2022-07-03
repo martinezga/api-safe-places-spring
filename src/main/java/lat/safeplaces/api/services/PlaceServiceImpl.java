@@ -4,21 +4,13 @@ import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.repositories.PlaceRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
-    // Hardcoded data implementation
-    private static Map<Long, PlaceModel> placeRepo = new HashMap<>();
-    static{
-        PlaceModel brasil = new PlaceModel(1L, "Brasil");
-        placeRepo.put(brasil.getId(), brasil);
-    }
     // Persistence data implementation
-    private PlaceRepository repository;
+    private final PlaceRepository repository;
     public PlaceServiceImpl(PlaceRepository placeRepository) {
         repository = placeRepository;
     }
@@ -43,7 +35,7 @@ public class PlaceServiceImpl implements PlaceService {
     public PlaceModel updatePlaceById(Long id, PlaceModel place) {
         // Search if record exists
         Optional<PlaceModel> placeToUpdate = repository.findById(id);
-        PlaceModel placeUpdated = placeToUpdate.map(placeFound -> {
+        return placeToUpdate.map(placeFound -> {
             placeFound.setName(place.getName());
             return repository.save(placeFound);
         }).orElseGet(() -> {
@@ -51,7 +43,6 @@ public class PlaceServiceImpl implements PlaceService {
             System.out.println("do not exist");
             return new PlaceModel();
         });
-        return placeUpdated;
     }
 
     @Override
