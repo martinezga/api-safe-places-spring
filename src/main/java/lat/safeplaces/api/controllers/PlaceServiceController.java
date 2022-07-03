@@ -5,7 +5,7 @@ import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/places")
@@ -13,6 +13,7 @@ public class PlaceServiceController {
     // TODO: implement status codes
 
     // Connect service
+    // Field injection
     @Autowired
     PlaceService placeService;
 
@@ -25,25 +26,25 @@ public class PlaceServiceController {
 
     // Get all places
     @GetMapping("/")
-    public Collection<PlaceModel> getAllPlaces() {
+    public List<PlaceModel> getAllPlaces() {
         return placeService.getAllPlaces();
     }
 
     // Get a place by ID
     @GetMapping("/{id}")
-    public PlaceModel getPlace(@PathVariable("id") String id) {
+    public PlaceModel getPlace(@PathVariable("id") Long id) {
         return placeService.getPlaceById(id);
     }
 
     // Update place by ID
     @PatchMapping("/{id}")
-    public String updatePlace(@PathVariable("id") String id, @RequestBody PlaceModel place) {
+    public String updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
         return placeService.updatePlaceById(id, place);
     }
 
     // Delete place by ID
     @DeleteMapping("/{id}")
-    public String deletePlace(@PathVariable("id") String id) {
+    public String deletePlace(@PathVariable("id") Long id) {
         return placeService.deletePlaceById(id);
     }
 

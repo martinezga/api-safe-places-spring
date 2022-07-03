@@ -1,7 +1,14 @@
 package lat.safeplaces.api.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class PlaceModel {
-    private String id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
     private String description;
     private String address_state;
@@ -10,18 +17,20 @@ public class PlaceModel {
     private String address_street;
     private String address_zipcode;
 
-    public PlaceModel(String id,
-                      String name){
+    public PlaceModel() {}
+
+    public PlaceModel(Long id,
+                      String name) {
         this.id = id;
         this.name = name;
         // TODO: complete assigment
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

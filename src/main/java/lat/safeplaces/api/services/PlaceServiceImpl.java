@@ -1,19 +1,25 @@
 package lat.safeplaces.api.services;
 
 import lat.safeplaces.api.models.PlaceModel;
+import lat.safeplaces.api.repositories.PlaceRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
     // Hardcoded data implementation
-    private static Map<String, PlaceModel> placeRepo = new HashMap<>();
+    private static Map<Long, PlaceModel> placeRepo = new HashMap<>();
     static{
-        PlaceModel brasil = new PlaceModel("1", "Brasil");
+        PlaceModel brasil = new PlaceModel(1L, "Brasil");
         placeRepo.put(brasil.getId(), brasil);
+    }
+    // Persistence data implementation
+    private PlaceRepository repository;
+    public PlaceServiceImpl(PlaceRepository placeRepository) {
+        repository = placeRepository;
     }
 
     @Override
@@ -22,18 +28,18 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Collection<PlaceModel> getAllPlaces() {
-        return placeRepo.values();
+    public List<PlaceModel> getAllPlaces() {
+        return repository.findAll();
     }
 
     @Override
-    public PlaceModel getPlaceById(String id) {
+    public PlaceModel getPlaceById(Long id) {
         System.out.println(placeRepo);
         return placeRepo.get(id);
     }
 
     @Override
-    public String updatePlaceById(String id, PlaceModel place) {
+    public String updatePlaceById(Long id, PlaceModel place) {
         // Search if record exists
         PlaceModel placeToUpdate = placeRepo.get(id);
         try {
@@ -47,7 +53,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public String deletePlaceById(String id) {
+    public String deletePlaceById(Long id) {
         // Search if record exists
         PlaceModel placeToUpdate = placeRepo.get(id);
         try {

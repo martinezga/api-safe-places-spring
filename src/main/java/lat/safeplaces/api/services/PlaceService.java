@@ -2,12 +2,14 @@ package lat.safeplaces.api.services;
 
 import lat.safeplaces.api.models.PlaceModel;
 
-import java.util.Collection;
+import javax.transaction.Transactional;
+import java.util.List;
 
+@Transactional
 public interface PlaceService {
     void createPlace(PlaceModel place);
-    Collection<PlaceModel> getAllPlaces();
-    PlaceModel getPlaceById(String id);
-    String updatePlaceById(String id, PlaceModel place);
-    String deletePlaceById(String id);
+    List<PlaceModel> getAllPlaces();
+    PlaceModel getPlaceById(Long id);
+    String updatePlaceById(Long id, PlaceModel place);
+    String deletePlaceById(Long id);
 }
