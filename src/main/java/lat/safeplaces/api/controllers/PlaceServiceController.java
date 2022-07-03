@@ -14,9 +14,13 @@ public class PlaceServiceController {
     // TODO: implement status codes
 
     // Connect service
-    // Field injection
+    // Constructor-base injection
+    private final PlaceService placeService;
+
     @Autowired
-    PlaceService placeService;
+    public PlaceServiceController(PlaceService placeService) {
+        this.placeService = placeService;
+    }
 
     // Create a place
     @PostMapping("/")
