@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/places")
@@ -30,8 +31,9 @@ public class PlaceServiceController {
     }
 
     // Get a place by ID
+    // Not required at API specification
     @GetMapping("/{id}")
-    public PlaceModel getPlace(@PathVariable("id") Long id) {
+    public Optional<PlaceModel> getPlace(@PathVariable("id") Long id) {
         return placeService.getPlaceById(id);
     }
 

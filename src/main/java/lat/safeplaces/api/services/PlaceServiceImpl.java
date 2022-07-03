@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
@@ -33,9 +34,9 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceModel getPlaceById(Long id) {
-        System.out.println(placeRepo);
-        return placeRepo.get(id);
+    public Optional<PlaceModel> getPlaceById(Long id) {
+        // TODO: When id do not exist return empty json, not a null value
+        return repository.findById(id);
     }
 
     @Override
