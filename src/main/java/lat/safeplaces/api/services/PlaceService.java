@@ -11,6 +11,6 @@ public interface PlaceService {
     PlaceModel createPlace(PlaceModel place);
     List<PlaceModel> getAllPlaces();
     Optional<PlaceModel> getPlaceById(Long id);
-    String updatePlaceById(Long id, PlaceModel place);
+    PlaceModel updatePlaceById(Long id, PlaceModel place);
     String deletePlaceById(Long id);
 }

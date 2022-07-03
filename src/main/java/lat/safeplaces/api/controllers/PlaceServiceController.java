@@ -39,7 +39,7 @@ public class PlaceServiceController {
 
     // Update place by ID
     @PatchMapping("/{id}")
-    public String updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
+    public PlaceModel updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
         return placeService.updatePlaceById(id, place);
     }
 
