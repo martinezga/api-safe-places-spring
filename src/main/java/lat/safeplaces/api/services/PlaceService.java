@@ -7,7 +7,7 @@ import java.util.List;
 
 @Transactional
 public interface PlaceService {
-    void createPlace(PlaceModel place);
+    PlaceModel createPlace(PlaceModel place);
     List<PlaceModel> getAllPlaces();
     PlaceModel getPlaceById(Long id);
     String updatePlaceById(Long id, PlaceModel place);

@@ -23,8 +23,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void createPlace(PlaceModel place) {
-        placeRepo.put(place.getId(), place);
+    public PlaceModel createPlace(PlaceModel place) {
+        return repository.save(place);
     }
 
     @Override

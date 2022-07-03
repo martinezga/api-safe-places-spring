@@ -19,9 +19,8 @@ public class PlaceServiceController {
 
     // Create a place
     @PostMapping("/")
-    public String createPlace(@RequestBody PlaceModel place) {
-        placeService.createPlace(place);
-        return "Place is created successfully";
+    public PlaceModel createPlace(@RequestBody PlaceModel place) {
+        return placeService.createPlace(place);
     }
 
     // Get all places
