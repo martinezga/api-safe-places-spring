@@ -56,11 +56,9 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public String deletePlaceById(Long id) {
-        // Search if record exists
-        PlaceModel placeToUpdate = placeRepo.get(id);
         try {
-            // If placeToUpdate is null throws an exception
-            placeRepo.remove(id, placeToUpdate);
+            // If object do not exist throws an exception
+            repository.deleteById(id);
             return "id: " + id + " deleted successfully";
         } catch (Exception e) {
             return "Error";
