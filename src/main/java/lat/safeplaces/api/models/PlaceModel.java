@@ -26,6 +26,10 @@ public class PlaceModel {
         // TODO: complete assigment
     }
 
+    public PlaceModel(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
