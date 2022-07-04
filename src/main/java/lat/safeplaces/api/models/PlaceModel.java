@@ -3,8 +3,10 @@ package lat.safeplaces.api.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "places")
 public class PlaceModel {
     @Id
     @GeneratedValue
