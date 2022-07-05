@@ -3,6 +3,7 @@ package lat.safeplaces.api.controllers;
 import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class PlaceServiceController {
 
     // Create a place
     @PostMapping("/")
-    public PlaceModel createPlace(@RequestBody PlaceModel place) {
-        return placeService.createPlace(place);
+    public ResponseEntity<PlaceModel> createPlace(@RequestBody PlaceModel request) {
+        return ResponseEntity.ok(placeService.createPlace(request));
     }
 
     // Get all places
