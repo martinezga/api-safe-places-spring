@@ -1,6 +1,7 @@
 # api-safe-places-spring
 
 ## References:
+- Spring Boot Annotations -> https://www.javatpoint.com/spring-boot-annotations
 - Maven profile settings -> https://baeldung.com/spring-profiles
 - Simple Web Application (Hello world)-> https://spring.io/guides/gs/spring-boot/
 - Spring boot service ->
