@@ -47,4 +47,9 @@ public class PlaceModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return String.format("PlaceModel[id=%d, name='%s']", id, name);
+    }
 }

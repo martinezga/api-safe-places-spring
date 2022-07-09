@@ -4,9 +4,12 @@ import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +35,8 @@ public class PlaceServiceController {
 
     // Get all places
     @GetMapping("/")
-    public List<PlaceModel> getAllPlaces() {
-        return placeService.getAllPlaces();
+    public ResponseEntity<List<PlaceResponse>> getAllPlaces() {
+        return ResponseEntity.ok(placeService.getAllPlaces());
     }
 
     // Get a place by ID
@@ -45,14 +48,14 @@ public class PlaceServiceController {
 
     // Update place by ID
     @PatchMapping("/{id}")
-    public PlaceModel updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
-        return placeService.updatePlaceById(id, place);
+    public ResponseEntity<PlaceModel> updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
+        return ResponseEntity.ok(placeService.updatePlaceById(id, place));
     }
 
     // Delete place by ID
     @DeleteMapping("/{id}")
-    public String deletePlace(@PathVariable("id") Long id) {
-        return placeService.deletePlaceById(id);
+    public ResponseEntity<String> deletePlace(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(placeService.deletePlaceById(id));
     }
 
 }

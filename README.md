@@ -10,5 +10,6 @@
 - H2 Database -> https://www.baeldung.com/spring-boot-h2-database
 - Rest service -> https://spring.io/guides/tutorials/rest/
 - Dependency Injection -> https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-dependencies
-- Spring’s RequestBody and ResponseBody Annotations -> https://www.baeldung.com/spring-request-response-body
+- https://technicalsand.com/using-responseentity-in-spring/
+- Using ResponseEntity -> Spring’s RequestBody and ResponseBody Annotations -> https://www.baeldung.com/spring-request-response-body
 - Entity To DTO -> https://baeldung.com/entity-to-and-from-dto-for-a-java-spring-application

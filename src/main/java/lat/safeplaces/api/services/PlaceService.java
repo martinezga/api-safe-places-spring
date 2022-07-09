@@ -10,7 +10,7 @@ import java.util.Optional;
 @Transactional
 public interface PlaceService {
     PlaceResponse createPlace(PlaceModel place);
-    List<PlaceModel> getAllPlaces();
+    List<PlaceResponse> getAllPlaces();
     Optional<PlaceModel> getPlaceById(Long id);
     PlaceModel updatePlaceById(Long id, PlaceModel place);
     String deletePlaceById(Long id);
