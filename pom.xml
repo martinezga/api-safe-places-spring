@@ -69,8 +69,16 @@
         <profile>
             <id>prod</id>
             <properties>
-                <maven.profiles.active>prod</maven.profiles.active>
+                <maven.profiles.active>postgresUrl,prod</maven.profiles.active>
             </properties>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
         </profile>
     </profiles>
 
