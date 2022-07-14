@@ -7,10 +7,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lat.safeplaces.api.repositories.PlaceRepository;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("h2")
 public class LoadDatabase {
-    // TODO: Research if this config loads on prod profile, if it is positive disable it
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
