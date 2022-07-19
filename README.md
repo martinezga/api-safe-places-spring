@@ -12,3 +12,4 @@
 - Dependency Injection -> https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-dependencies
 - Spring’s RequestBody and ResponseBody Annotations -> https://www.baeldung.com/spring-request-response-body
 - Entity To DTO -> https://baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+- CORS with Spring -> https://www.baeldung.com/spring-cors
