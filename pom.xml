@@ -46,12 +46,12 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>h2</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <maven.profiles.active>dev</maven.profiles.active>
+                <maven.profiles.active>h2,dev</maven.profiles.active>
             </properties>
             <dependencies>
                 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
@@ -62,6 +62,25 @@
                 <dependency>
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>devpostgresurl</id>
+            <properties>
+                <maven.profiles.active>postgresUrl,dev</maven.profiles.active>
+            </properties>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                </dependency>
+                <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>

@@ -1,15 +1,13 @@
-package lat.safeplaces.api.models;
+package lat.safeplaces.api.payloads.response;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lat.safeplaces.api.models.PlaceModel;
 
-@Entity
-@Table(name = "places")
-public class PlaceModel {
-    @Id
-    @GeneratedValue
+import java.util.ArrayList;
+import java.util.List;
+
+public class AllPlacesResponse {
+
     private Long id;
     private String name;
     private String description;
@@ -18,14 +16,21 @@ public class PlaceModel {
     private String address_colonia;
     private String address_street;
     private String address_zipcode;
+    @JsonIgnore
+    private List<AllPlacesResponse> listPlaceResponse;
 
-    public PlaceModel() {}
+    public AllPlacesResponse() {}
 
-    public PlaceModel(Long id, String name,
-                      String description, String address_state,
-                      String address_city, String address_colonia,
-                      String address_street, String address_zipcode)
-    {
+    public AllPlacesResponse(
+            Long id,
+            String name,
+            String description,
+            String address_state,
+            String address_city,
+            String address_colonia,
+            String address_street,
+            String address_zipcode
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,8 +41,24 @@ public class PlaceModel {
         this.address_zipcode = address_zipcode;
     }
 
-    public PlaceModel(String name) {
-        this.name = name;
+    public AllPlacesResponse(List<PlaceModel> listPlaceModel) {
+        List<AllPlacesResponse> allPlaceResponse = new ArrayList<>();
+        // Convert List<PlaceModel> into List<PlaceResponse>
+        for (PlaceModel place: listPlaceModel) {
+            allPlaceResponse.add(
+                    new AllPlacesResponse(
+                            place.getId(),
+                            place.getName(),
+                            place.getDescription(),
+                            place.getAddress_state(),
+                            place.getAddress_city(),
+                            place.getAddress_colonia(),
+                            place.getAddress_street(),
+                            place.getAddress_zipcode()
+                    )
+            );
+            listPlaceResponse = allPlaceResponse;
+        }
     }
 
     public Long getId() {
@@ -104,8 +125,11 @@ public class PlaceModel {
         this.address_zipcode = address_zipcode;
     }
 
-    @Override
-    public String toString() {
-        return String.format("PlaceModel[id=%d, name='%s']", id, name);
+    public List<AllPlacesResponse> getListPlaceResponse() {
+        return listPlaceResponse;
+    }
+
+    public void setListPlaceResponse(List<AllPlacesResponse> listPlaceResponse) {
+        this.listPlaceResponse = listPlaceResponse;
     }
 }
