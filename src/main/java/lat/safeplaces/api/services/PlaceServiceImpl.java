@@ -1,6 +1,7 @@
 package lat.safeplaces.api.services;
 
 import lat.safeplaces.api.models.PlaceModel;
+import lat.safeplaces.api.payloads.response.AllPlacesResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.repositories.PlaceRepository;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceModel> getAllPlaces() {
-        return repository.findAll();
+    public List<AllPlacesResponse> getAllPlaces() {
+        return new AllPlacesResponse(repository.findAll()).getListPlaceResponse();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package lat.safeplaces.api.controllers;
 
 import lat.safeplaces.api.models.PlaceModel;
+import lat.safeplaces.api.payloads.response.AllPlacesResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,15 @@ public class PlaceServiceController {
     }
 
     // Create a place
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<PlaceResponse> createPlace(@RequestBody PlaceModel request) {
         return ResponseEntity.ok(placeService.createPlace(request));
     }
 
     // Get all places
-    @GetMapping("/")
-    public List<PlaceModel> getAllPlaces() {
-        return placeService.getAllPlaces();
+    @GetMapping
+    public ResponseEntity<List<AllPlacesResponse>> getAllPlaces() {
+        return ResponseEntity.ok(placeService.getAllPlaces());
     }
 
     // Get a place by ID
