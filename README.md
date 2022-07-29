@@ -1,5 +1,11 @@
 # api-safe-places-spring
 
+An API for posting and commenting on addresses considered safe places for women by women.
+
+https://safe-places-spring-boot.herokuapp.com/
+
+HackademyMX project.
+
 ## References:
 - Spring Boot Annotations -> https://www.javatpoint.com/spring-boot-annotations
 - Maven profile settings -> https://baeldung.com/spring-profiles
@@ -13,3 +19,4 @@
 - Spring’s RequestBody and ResponseBody Annotations -> https://www.baeldung.com/spring-request-response-body
 - Entity To DTO -> https://baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 - CORS with Spring -> https://www.baeldung.com/spring-cors
+- Postgresql Database -> https://www.codejava.net/frameworks/spring-boot/connect-to-postgresql-database-examples

@@ -52,8 +52,8 @@ public class PlaceServiceController {
 
     // Delete place by ID
     @DeleteMapping("/{id}")
-    public String deletePlace(@PathVariable("id") Long id) {
-        return placeService.deletePlaceById(id);
+    public ResponseEntity<String> deletePlace(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(placeService.deletePlaceById(id));
     }
 
 }
