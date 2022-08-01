@@ -16,6 +16,6 @@ public interface PlaceService {
     PlaceResponse createPlace(PlaceModel place);
     List<AllPlacesResponse> getAllPlaces();
     Optional<PlaceModel> getPlaceById(Long id);
-    PlaceResponse updatePlaceById(Long id, PlaceModel place);
+    PlaceResponse updatePlaceById(Long id, PlaceModel place) throws ResourceNotFoundException;
     DeleteResponse deletePlaceById(Long id) throws ResourceNotFoundException;
 }

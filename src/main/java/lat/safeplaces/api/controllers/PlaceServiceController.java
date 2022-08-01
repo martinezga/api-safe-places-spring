@@ -48,7 +48,8 @@ public class PlaceServiceController {
 
     // Update place by ID
     @PatchMapping("/{id}")
-    public ResponseEntity<PlaceResponse> updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
+    public ResponseEntity<PlaceResponse> updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place)
+        throws ResourceNotFoundException {
         return ResponseEntity.ok(placeService.updatePlaceById(id, place));
     }
 

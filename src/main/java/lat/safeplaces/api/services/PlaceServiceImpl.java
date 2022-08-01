@@ -38,7 +38,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceResponse updatePlaceById(Long id, PlaceModel place) {
+    public PlaceResponse updatePlaceById(Long id, PlaceModel place)
+            throws ResourceNotFoundException {
         // Search if record exists
         Optional<PlaceModel> placeToUpdate = repository.findById(id);
         return placeToUpdate.map(placeFound -> {
@@ -61,11 +62,8 @@ public class PlaceServiceImpl implements PlaceService {
             repository.save(placeFound);
 
             return new PlaceResponse(id, placeFound.getName());
-        }).orElseGet(() -> {
-            // TODO: implement orElseThrow / NotFoundException
-            System.out.println("do not exist");
-            return new PlaceResponse();
-        });
+        }).orElseThrow(() -> new ResourceNotFoundException()
+        );
     }
 
     @Override
