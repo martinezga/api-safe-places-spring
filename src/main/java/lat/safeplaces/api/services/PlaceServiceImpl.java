@@ -1,9 +1,12 @@
 package lat.safeplaces.api.services;
 
+import lat.safeplaces.api.exceptions.ResourceNotFoundException;
 import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.payloads.response.AllPlacesResponse;
+import lat.safeplaces.api.payloads.response.DeleteResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.repositories.PlaceRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,13 +69,14 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public String deletePlaceById(Long id) {
+    public DeleteResponse deletePlaceById(Long id)
+        throws ResourceNotFoundException {
+        // If object do not exist throws an exception
         try {
-            // If object do not exist throws an exception
             repository.deleteById(id);
-            return "id: " + id + " deleted successfully";
         } catch (Exception e) {
-            return "Error";
+            throw new ResourceNotFoundException();
         }
+        return new DeleteResponse(id);
     }
 }
