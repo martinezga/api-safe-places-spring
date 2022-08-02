@@ -1,9 +1,12 @@
 package lat.safeplaces.api.services;
 
+import lat.safeplaces.api.exceptions.ResourceNotFoundException;
 import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.payloads.response.AllPlacesResponse;
+import lat.safeplaces.api.payloads.response.DeleteResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.repositories.PlaceRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,27 +38,43 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceModel updatePlaceById(Long id, PlaceModel place) {
+    public PlaceResponse updatePlaceById(Long id, PlaceModel place)
+            throws ResourceNotFoundException {
         // Search if record exists
         Optional<PlaceModel> placeToUpdate = repository.findById(id);
         return placeToUpdate.map(placeFound -> {
-            placeFound.setName(place.getName());
-            return repository.save(placeFound);
-        }).orElseGet(() -> {
-            // TODO: implement orElseThrow / NotFoundException
-            System.out.println("do not exist");
-            return new PlaceModel();
-        });
+            var name = place.getName();
+            var description = place.getDescription();
+            var address_state = place.getAddress_state();
+            var address_city = place.getAddress_city();
+            var address_colonia = place.getAddress_colonia();
+            var address_street = place.getAddress_street();
+            var address_zipcode = place.getAddress_zipcode();
+
+            if (name != null) placeFound.setName(name);
+            if (description != null) placeFound.setDescription(name);
+            if (address_state != null) placeFound.setAddress_state(address_state);
+            if (address_city != null) placeFound.setAddress_city(address_city);
+            if (address_colonia != null) placeFound.setAddress_colonia(address_colonia);
+            if (address_street != null) placeFound.setAddress_street(address_street);
+            if (address_zipcode != null) placeFound.setAddress_zipcode(address_zipcode);
+
+            repository.save(placeFound);
+
+            return new PlaceResponse(id, placeFound.getName());
+        }).orElseThrow(() -> new ResourceNotFoundException()
+        );
     }
 
     @Override
-    public String deletePlaceById(Long id) {
+    public DeleteResponse deletePlaceById(Long id)
+        throws ResourceNotFoundException {
+        // If object do not exist throws an exception
         try {
-            // If object do not exist throws an exception
             repository.deleteById(id);
-            return "id: " + id + " deleted successfully";
         } catch (Exception e) {
-            return "Error";
+            throw new ResourceNotFoundException();
         }
+        return new DeleteResponse(id);
     }
 }

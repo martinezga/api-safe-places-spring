@@ -1,7 +1,9 @@
 package lat.safeplaces.api.controllers;
 
+import lat.safeplaces.api.exceptions.ResourceNotFoundException;
 import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.payloads.response.AllPlacesResponse;
+import lat.safeplaces.api.payloads.response.DeleteResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,14 +48,15 @@ public class PlaceServiceController {
 
     // Update place by ID
     @PatchMapping("/{id}")
-    public PlaceModel updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place) {
-        return placeService.updatePlaceById(id, place);
+    public ResponseEntity<PlaceResponse> updatePlace(@PathVariable("id") Long id, @RequestBody PlaceModel place)
+        throws ResourceNotFoundException {
+        return ResponseEntity.ok(placeService.updatePlaceById(id, place));
     }
 
     // Delete place by ID
     @DeleteMapping("/{id}")
-    public String deletePlace(@PathVariable("id") Long id) {
-        return placeService.deletePlaceById(id);
+    public ResponseEntity<DeleteResponse> deletePlace(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(placeService.deletePlaceById(id));
     }
 
 }
