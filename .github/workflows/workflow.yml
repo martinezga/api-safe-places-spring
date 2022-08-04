@@ -1,0 +1,33 @@
+name: CI/CD Docker Spring Heroku
+
+on:
+  push:
+    branches:    
+      - 'develop'
+      - 'main'
+
+  pull_request:
+    branches:    
+      - 'develop'
+      - 'main'
+
+# Set environment variables
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  APP_NAME_DEV: ${{ secrets.APP_NAME_DEV }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Clone the repository
+      - uses: actions/checkout@v2
+      # Logging in to Heroku Container Registry
+      - name: Registry login
+        run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+      # Build the image and push it
+      - name: Build and publish
+        run: |
+          cd backend
+          heroku container:push web -a $APP_NAME_DEV
+          heroku container:release web -a $APP_NAME_DEV
