@@ -28,6 +28,5 @@ jobs:
       # Build the image and push it
       - name: Build and publish
         run: |
-          cd backend
           heroku container:push web -a $APP_NAME_DEV
           heroku container:release web -a $APP_NAME_DEV
