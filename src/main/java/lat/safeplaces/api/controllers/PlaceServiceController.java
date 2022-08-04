@@ -59,4 +59,11 @@ public class PlaceServiceController {
         return ResponseEntity.ok(placeService.deletePlaceById(id));
     }
 
+    // Add an image to a place by ID
+    @PostMapping("/{id}/image")
+    public ResponseEntity<PlaceResponse> addPlaceImage(@PathVariable("id") Long id, @RequestBody PlaceModel place)
+        throws ResourceNotFoundException {
+        return ResponseEntity.ok(placeService.addPlaceImage(id, place.getUrl()));
+    }
+
 }

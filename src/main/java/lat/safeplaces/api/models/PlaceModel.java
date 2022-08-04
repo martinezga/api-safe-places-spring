@@ -1,9 +1,6 @@
 package lat.safeplaces.api.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "places")
@@ -18,13 +15,16 @@ public class PlaceModel {
     private String address_colonia;
     private String address_street;
     private String address_zipcode;
+    @Column(name = "imageUrl")
+    private String url;
 
     public PlaceModel() {}
 
     public PlaceModel(Long id, String name,
                       String description, String address_state,
                       String address_city, String address_colonia,
-                      String address_street, String address_zipcode)
+                      String address_street, String address_zipcode,
+                      String url)
     {
         this.id = id;
         this.name = name;
@@ -34,6 +34,7 @@ public class PlaceModel {
         this.address_colonia = address_colonia;
         this.address_street = address_street;
         this.address_zipcode = address_zipcode;
+        this.url = url;
     }
 
     public PlaceModel(String name) {
@@ -102,6 +103,14 @@ public class PlaceModel {
 
     public void setAddress_zipcode(String address_zipcode) {
         this.address_zipcode = address_zipcode;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String imageUrl) {
+        this.url = imageUrl;
     }
 
     @Override
