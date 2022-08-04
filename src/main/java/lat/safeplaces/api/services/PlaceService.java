@@ -18,4 +18,5 @@ public interface PlaceService {
     Optional<PlaceModel> getPlaceById(Long id);
     PlaceResponse updatePlaceById(Long id, PlaceModel place) throws ResourceNotFoundException;
     DeleteResponse deletePlaceById(Long id) throws ResourceNotFoundException;
+    PlaceResponse addPlaceImage(Long id, String imageUrl) throws ResourceNotFoundException;
 }
