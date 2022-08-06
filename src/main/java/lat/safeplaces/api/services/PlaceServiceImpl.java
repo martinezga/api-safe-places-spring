@@ -6,7 +6,6 @@ import lat.safeplaces.api.payloads.response.AllPlacesResponse;
 import lat.safeplaces.api.payloads.response.DeleteResponse;
 import lat.safeplaces.api.payloads.response.PlaceResponse;
 import lat.safeplaces.api.repositories.PlaceRepository;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,4 +76,21 @@ public class PlaceServiceImpl implements PlaceService {
         }
         return new DeleteResponse(id);
     }
+
+    @Override
+    public PlaceResponse addPlaceImage(Long id, String imageUrl)
+        throws ResourceNotFoundException {
+        return repository.findById(id)
+                .map(placeFound -> {
+                    if (imageUrl != null && !(imageUrl.isBlank())) {
+                        placeFound.setUrl(imageUrl);
+                        repository.save(placeFound);
+                    }
+                    return new PlaceResponse(placeFound.getId(), placeFound.getName());
+                })
+                .orElseThrow(
+                        () -> new ResourceNotFoundException()
+                );
+    }
+
 }

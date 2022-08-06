@@ -16,6 +16,7 @@ public class AllPlacesResponse {
     private String address_colonia;
     private String address_street;
     private String address_zipcode;
+    private String url;
     @JsonIgnore
     private List<AllPlacesResponse> listPlaceResponse;
 
@@ -29,7 +30,8 @@ public class AllPlacesResponse {
             String address_city,
             String address_colonia,
             String address_street,
-            String address_zipcode
+            String address_zipcode,
+            String url
     ) {
         this.id = id;
         this.name = name;
@@ -39,6 +41,7 @@ public class AllPlacesResponse {
         this.address_colonia = address_colonia;
         this.address_street = address_street;
         this.address_zipcode = address_zipcode;
+        this.url = url;
     }
 
     public AllPlacesResponse(List<PlaceModel> listPlaceModel) {
@@ -54,7 +57,8 @@ public class AllPlacesResponse {
                             place.getAddress_city(),
                             place.getAddress_colonia(),
                             place.getAddress_street(),
-                            place.getAddress_zipcode()
+                            place.getAddress_zipcode(),
+                            place.getUrl()
                     )
             );
             listPlaceResponse = allPlaceResponse;
@@ -123,6 +127,14 @@ public class AllPlacesResponse {
 
     public void setAddress_zipcode(String address_zipcode) {
         this.address_zipcode = address_zipcode;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public List<AllPlacesResponse> getListPlaceResponse() {
