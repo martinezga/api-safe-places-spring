@@ -1,6 +1,8 @@
 package lat.safeplaces.api.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "places")
@@ -17,6 +19,9 @@ public class PlaceModel {
     private String address_zipcode;
     @Column(name = "imageUrl")
     private String url;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "place_id")
+    private Set<CommentModel> comments = new HashSet<>();
 
     public PlaceModel() {}
 
@@ -111,6 +116,14 @@ public class PlaceModel {
 
     public void setUrl(String imageUrl) {
         this.url = imageUrl;
+    }
+
+    public Set<CommentModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentModel> comments) {
+        this.comments = comments;
     }
 
     @Override

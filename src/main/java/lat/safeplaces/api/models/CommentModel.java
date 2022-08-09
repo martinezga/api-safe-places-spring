@@ -11,7 +11,6 @@ public class CommentModel {
     @Id
     @GeneratedValue
     private Long id;
-    private PlaceModel place;
     private String comment;
 
     public CommentModel() {
@@ -23,14 +22,6 @@ public class CommentModel {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public PlaceModel getPlace() {
-        return place;
-    }
-
-    public void setPlace(PlaceModel place) {
-        this.place = place;
     }
 
     public String getComment() {
