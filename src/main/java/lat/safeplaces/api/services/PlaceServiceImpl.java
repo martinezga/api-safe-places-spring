@@ -31,9 +31,9 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Optional<PlaceModel> getPlaceById(Long id) {
-        // TODO: When id do not exist return empty json, not a null value
-        return repository.findById(id);
+    public PlaceModel getPlaceById(Long id) throws ResourceNotFoundException {
+        return repository.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override

@@ -42,8 +42,9 @@ public class PlaceServiceController {
     // Get a place by ID
     // Not required at API specification
     @GetMapping("/{id}")
-    public Optional<PlaceModel> getPlace(@PathVariable("id") Long id) {
-        return placeService.getPlaceById(id);
+    public ResponseEntity<PlaceModel> getPlace(@PathVariable("id") Long id)
+        throws ResourceNotFoundException {
+        return ResponseEntity.ok(placeService.getPlaceById(id));
     }
 
     // Update place by ID

@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface PlaceService {
     PlaceResponse createPlace(PlaceModel place);
     List<AllPlacesResponse> getAllPlaces();
-    Optional<PlaceModel> getPlaceById(Long id);
+    PlaceModel getPlaceById(Long id) throws ResourceNotFoundException;
     PlaceResponse updatePlaceById(Long id, PlaceModel place) throws ResourceNotFoundException;
     DeleteResponse deletePlaceById(Long id) throws ResourceNotFoundException;
     PlaceResponse addPlaceImage(Long id, String imageUrl) throws ResourceNotFoundException;
