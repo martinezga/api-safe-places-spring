@@ -4,6 +4,7 @@ import lat.safeplaces.api.exceptions.ResourceNotFoundException;
 import lat.safeplaces.api.models.CommentModel;
 import lat.safeplaces.api.models.PlaceModel;
 import lat.safeplaces.api.payloads.request.CommentRequest;
+import lat.safeplaces.api.payloads.response.DeleteResponse;
 import lat.safeplaces.api.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,6 @@ public class CommentServiceImpl implements CommentService {
         this.placeService = placeService;
     }
 
-
     @Override
     public CommentModel createComment(CommentRequest request) throws ResourceNotFoundException {
         PlaceModel placeReceived = placeService.getPlaceById(request.getPlaceId());
@@ -29,7 +29,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(Long id) {
-
-    }
+    public DeleteResponse deleteCommentByID(Long id)
+        throws ResourceNotFoundException {
+            // If object do not exist throws an exception
+            try {
+                repository.deleteById(id);
+            } catch (Exception e) {
+                throw new ResourceNotFoundException();
+            }
+            return new DeleteResponse(id);
+        }
 }
