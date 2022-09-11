@@ -1,10 +1,12 @@
 package lat.safeplaces.api.payloads.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lat.safeplaces.api.models.CommentModel;
 import lat.safeplaces.api.models.PlaceModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AllPlacesResponse {
 
@@ -17,6 +19,7 @@ public class AllPlacesResponse {
     private String address_street;
     private String address_zipcode;
     private String url;
+    private Set<CommentModel> comments;
     @JsonIgnore
     private List<AllPlacesResponse> listPlaceResponse;
 
@@ -31,7 +34,8 @@ public class AllPlacesResponse {
             String address_colonia,
             String address_street,
             String address_zipcode,
-            String url
+            String url,
+            Set<CommentModel> comments
     ) {
         this.id = id;
         this.name = name;
@@ -42,11 +46,12 @@ public class AllPlacesResponse {
         this.address_street = address_street;
         this.address_zipcode = address_zipcode;
         this.url = url;
+        this.comments = comments;
     }
 
     public AllPlacesResponse(List<PlaceModel> listPlaceModel) {
         List<AllPlacesResponse> allPlaceResponse = new ArrayList<>();
-        // Convert List<PlaceModel> into List<PlaceResponse>
+        // Convert List<PlaceModel> into List<AllPlacesResponse>
         for (PlaceModel place: listPlaceModel) {
             allPlaceResponse.add(
                     new AllPlacesResponse(
@@ -58,11 +63,12 @@ public class AllPlacesResponse {
                             place.getAddress_colonia(),
                             place.getAddress_street(),
                             place.getAddress_zipcode(),
-                            place.getUrl()
+                            place.getUrl(),
+                            place.getComments()
                     )
             );
-            listPlaceResponse = allPlaceResponse;
         }
+        listPlaceResponse = allPlaceResponse;
     }
 
     public Long getId() {
@@ -135,6 +141,14 @@ public class AllPlacesResponse {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Set<CommentModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentModel> comments) {
+        this.comments = comments;
     }
 
     public List<AllPlacesResponse> getListPlaceResponse() {
